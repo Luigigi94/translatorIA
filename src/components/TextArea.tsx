@@ -1,6 +1,6 @@
 import { Form } from 'react-bootstrap'
 import { SectionType } from '../types.d'
-import React from 'react'
+import React, { type CSSProperties } from 'react'
 
 interface Props {
   type: SectionType
@@ -8,7 +8,7 @@ interface Props {
   onChange: (value: string) => void
   value: string
 }
-const commonStyles = { border: 0, height: '200px', resize: 'none' }
+const commonStyles: CSSProperties = { border: '0', height: '200px', resize: 'both' }
 
 const getPlaceHolder = ({ type, loading }: { type: SectionType, loading?: boolean }) => {
   if (type === SectionType.From) return 'Introducir texto'
