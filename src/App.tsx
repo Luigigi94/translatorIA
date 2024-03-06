@@ -11,6 +11,8 @@ import { TextArea } from './components/TextArea'
 import { useEffect } from 'react'
 import { translate } from './services/translate'
 import { useDebounce } from './hooks/useDebounce'
+import { ToastContainer, toast } from 'react-toastify'
+import { Example } from './components/toastit'
 
 function App() {
   const {
@@ -40,7 +42,12 @@ function App() {
   }, [debouncedFromText, fromLanguage, toLanguage])
 
   const handleClipboard = () => {
-    navigator.clipboard.writeText(result).catch(() => {})
+    navigator.clipboard.writeText(result)
+      .then(() => {
+        console.log('debe mostrar el toast')
+        toast.success('Copiado al portapapeles')
+      })
+      .catch(() => {})
   }
 
   const handleSpeakTo = () => {
@@ -116,6 +123,7 @@ function App() {
                   variant='link'
                   onClick={ handleClipboard }>
                     <ClipboardIcon/>
+                    <ToastContainer/>
                 </Button>
                 <Button
                   variant='link'
@@ -127,6 +135,9 @@ function App() {
           </Stack>
         </Col>
       </Row>
+      <div >
+        <Example />
+      </div>
     </Container>
   )
 }
